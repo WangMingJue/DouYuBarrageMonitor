@@ -11,3 +11,7 @@ Stage:
 2. input [ip:port/web/start_barrage_service/] in browse
 3. You can check if the service is started, input [ip:port/web/get_service_status/] in browse
 4. you can stop the service, input [ip:port/web/stop_barrage_service/]
+
+Known Issue:
+1. 每获取到一条弹幕，都会创建一个子线程去写入数据库，两天后，会造成线程过多，目前是手动重启服务。
+(When service get a barrage, it will create an child thread for write barrage info to database. After tow day, there are many threads, please manual restart service.)
