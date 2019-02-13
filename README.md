@@ -9,6 +9,7 @@ Then according to the request to obtain the daily list, week list, month list, y
 
 
 Stage:
+0. modify APP_ROOM_ID in settings.py
 1. python manage.py runserver ip:port
 2. input [ip:port/web/start_barrage_service/] in browse
 3. You can check if the service is started, input [ip:port/web/get_service_status/] in browse
