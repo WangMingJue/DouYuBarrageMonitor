@@ -1,10 +1,10 @@
 import threading
 
-from django.conf import settings
+from DouYuBarrageMonitor import settings
 
 from webServer.models import Barrage
 from LogContent.MyLog import get_logger
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 
 
@@ -31,7 +31,6 @@ class SaveBarrageThread(threading.Thread):
 
     def run(self):
         now = datetime.now()
-        # now = (datetime.now() + timedelta(hours=1))
         try:
             bar = Barrage()
             bar.douyu_id = self.douyu_id

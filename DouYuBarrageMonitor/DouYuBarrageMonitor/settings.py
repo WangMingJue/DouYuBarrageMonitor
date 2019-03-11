@@ -24,7 +24,7 @@ SECRET_KEY = 'q+&^zv(5zyegxf7-#2dp4^ksouaed#3^j&a7ff7%qh7xoxd&#y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'webServer'
 ]
 
@@ -42,7 +43,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -75,13 +76,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
-        'NAME': 'BarrageInfo',
-        'PASSWORD': '123456',
+        'NAME': 'Test',
+        'PASSWORD': 'pwd',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
-
+CRONJOBS = [
+    ('01   18 * * *', 'webServer.crontab.scheduler_open_task', '>> {}/open.txt'.format(BASE_DIR)),
+    ('01   06 * * *', 'webServer.crontab.scheduler_close_task', '>> {}/close.txt'.format(BASE_DIR)),
+    ('01   08 * * *', 'webServer.crontab.scheduler_database_task', '>> {}/database.txt'.format(BASE_DIR)),
+    ('*/10 * * * *', 'webServer.crontab.scheduler_check_task', '>> {}/check.txt'.format(BASE_DIR)),
+]
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -105,13 +112,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -120,3 +127,17 @@ STATIC_URL = '/static/'
 
 # configure live room number
 APP_ROOM_ID = "428250"
+
+# host of the service
+HOST = "http://127.0.0.1:8088"
+
+# 163 mail content
+MAIL_HOST = "smtp.163.com"  # SMTP Server
+MAIL_USER = "mail username"  # Username
+MAIL_PWD = "password"  # Access Password，not login password
+SEND_FROM_USER = "mail sender"  # Mail sender
+SEND_TO_USER = ['Mail addressee 1', 'Mail addressee 2']  # Mail addressee
+
+# Wechat
+APPID = "appid"
+APPSECRET = "app secret"

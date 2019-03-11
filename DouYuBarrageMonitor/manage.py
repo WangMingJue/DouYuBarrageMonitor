@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 import os
 import sys
+from webServer.BarrageContent.BarrageCache import BarrageCache
+from webServer.BarrageContent.SignInCache import SignInCache
+barrage_cache = BarrageCache()
+signin_cache = SignInCache()
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DouYuBarrageMonitor.settings")
