@@ -19,3 +19,8 @@ Stage:
 Known Issue:
 1. 每获取到一条弹幕，都会创建一个子线程去写入数据库，两天后，会造成线程过多，目前是手动重启服务。
 (When service get a barrage, it will create an child thread for write barrage info to database. After tow day, there are many threads, please manual restart service.)
+
+2019-03-11:
+1.添加了微信公众号自定义回复内容
+2.添加了监控弹幕时，实时添加签到和弹幕量缓存
+3.下一步准备将所有数据库相关，和缓存都换成Redis
