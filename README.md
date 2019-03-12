@@ -17,8 +17,6 @@ Stage:
 4. you can stop the service, input [ip:port/web/stop_barrage_service/]
 
 Known Issue:
-1. 每获取到一条弹幕，都会创建一个子线程去写入数据库，两天后，会造成线程过多，目前是手动重启服务。
-(When service get a barrage, it will create an child thread for write barrage info to database. After tow day, there are many threads, please manual restart service.)
 
 
 ChangList：
@@ -30,3 +28,5 @@ ChangList：
 2.添加了监控弹幕时，实时添加签到和弹幕量缓存
 
 3.下一步准备将所有缓存都换成Redis
+
+4.使用了conrtab技术和Django-conrtab组件，进行定时开启和关闭服务，并定时写数据到数据库中
