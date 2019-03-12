@@ -29,4 +29,4 @@ ChangList：
 
 3.下一步准备将所有缓存都换成Redis
 
-4.使用了conrtab技术和Django-conrtab组件，进行定时开启和关闭服务，并定时写数据到数据库中
+4.使用了crontab技术和Django-crontab组件，进行定时开启和关闭服务，并定时写数据到数据库中
